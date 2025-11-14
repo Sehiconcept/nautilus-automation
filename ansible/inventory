@@ -1,0 +1,11 @@
+[stapp01]
+stapp01 ansible_host=stapp01.stratos.xfusioncorp.com ansible_user=tony ansible_ssh_pass=Ir0nM@n ansible_connection=ssh ansible_port=22
+
+[stapp02]
+stapp02 ansible_host=stapp02.stratos.xfusioncorp.com ansible_user=steve ansible_ssh_pass=Am3ric@ ansible_connection=ssh ansible_port=22
+
+[stapp03]
+stapp03 ansible_host=stapp03.stratos.xfusioncorp.com ansible_user=banner ansible_ssh_pass=BigGr33n ansible_connection=ssh ansible_port=22
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3

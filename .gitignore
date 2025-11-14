@@ -1,0 +1,17 @@
+# Logs and temporary files
+*.log
+*.tmp
+
+# Ansible local files
+ansible/.ssh/
+ansible/keys/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Secrets (even if not here, good practice)
+*.pem
+*.key
