@@ -2,7 +2,7 @@
 
 Automated deployment and configuration of application servers in Stratos DC using Ansible.
 
-This repository documents a series of infrastructure automation tasks completed to standardize server setup, package installation, service management, and fine-grained file permissions — all without manual intervention.
+This repository documents a series of infrastructure automation tasks completed to standardize server setup, package installation, service management, and fine-grained file permissions — all without manual intervention. | 2025-11-15 | Deployed web server with branded content using `lineinfile` |
 
 > **Goal**: Ensure consistency, security, and scalability across all app servers using infrastructure-as-code principles.
 
@@ -18,7 +18,7 @@ This repository documents a series of infrastructure automation tasks completed 
 | ✅ Create system files | `ansible/playbook.yml` | Created `/tmp/file.txt`, `/opt/sysops/{blog.txt,story.txt,media.txt}` |
 | ✅ Set ACL permissions | `ansible/playbook.yml` | Granular file access for `tony`(group), `steve`(user), `banner`(group) |
 | ✅ SSH key auth setup | Manual (pre-req) | Configured passwordless SSH from `thor@jumphost` to `tony@stapp0[1-3]` |
-
+| ✅ Deploy web server + branded content | `ansible/playbook.yml` | Installed `httpd`, created `index.html` with branded welcome message at top using `lineinfile` |
 ---
 
 ## 🛠️ How to Use (For Team Members)
