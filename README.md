@@ -2,7 +2,7 @@
 
 Automated deployment and configuration of application servers in Stratos DC using Ansible.
 
-This repository documents a series of infrastructure automation tasks completed to standardize server setup, package installation, service management, and fine-grained file permissions — all without manual intervention. | 2025-11-15 | Deployed web server with branded content using `lineinfile` |
+This repository documents a series of infrastructure automation tasks completed to standardize server setup, package installation, service management, and fine-grained file permissions — all without manual intervention. | 2025-11-15 | Deployed web server with branded content using `lineinfile` | Deployed files conditionally using `ansible_nodename` conditionals |
 
 > **Goal**: Ensure consistency, security, and scalability across all app servers using infrastructure-as-code principles.
 
@@ -19,6 +19,7 @@ This repository documents a series of infrastructure automation tasks completed 
 | ✅ Set ACL permissions | `ansible/playbook.yml` | Granular file access for `tony`(group), `steve`(user), `banner`(group) |
 | ✅ SSH key auth setup | Manual (pre-req) | Configured passwordless SSH from `thor@jumphost` to `tony@stapp0[1-3]` |
 | ✅ Deploy web server + branded content | `ansible/playbook.yml` | Installed `httpd`, created `index.html` with branded welcome message at top using `lineinfile` |
+| ✅ Conditional file deployment | `ansible/playbook.yml` | Used `when` conditionals with `ansible_nodename` to copy different files to different servers with unique ownership |
 ---
 
 ## 🛠️ How to Use (For Team Members)

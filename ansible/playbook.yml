@@ -1,32 +1,31 @@
 ---
-- name: Install and configure httpd web server
-  hosts: appservers
+- name: Copy files conditionally to different app servers
+  hosts: all
   become: yes
   tasks:
-    - name: Install httpd package
-      yum:
-        name: httpd
-        state: present
-
-    - name: Start and enable httpd service
-      systemd:
-        name: httpd
-        state: started
-        enabled: yes
-
-    - name: Create initial index.html with content
+    - name: Copy blog.txt to stapp01
       copy:
-        content: "This is a Nautilus sample file, created using Ansible!\n"
-        dest: /var/www/html/index.html
-        owner: apache
-        group: apache
-        mode: '0755'
+        src: /usr/src/sysops/blog.txt
+        dest: /opt/sysops/blog.txt
+        owner: tony
+        group: tony
+        mode: '0644'
+      when: ansible_nodename == "stapp01.stratos.xfusioncorp.com"
 
-    - name: Add welcome message at the top of index.html
-      lineinfile:
-        path: /var/www/html/index.html
-        line: "Welcome to xFusionCorp Industries!"
-        insertbefore: BOF
-        owner: apache
-        group: apache
-        mode: '0755'
+    - name: Copy story.txt to stapp02
+      copy:
+        src: /usr/src/sysops/story.txt
+        dest: /opt/sysops/story.txt
+        owner: steve
+        group: steve
+        mode: '0644'
+      when: ansible_nodename == "stapp02.stratos.xfusioncorp.com"
+
+    - name: Copy media.txt to stapp03
+      copy:
+        src: /usr/src/sysops/media.txt
+        dest: /opt/sysops/media.txt
+        owner: banner
+        group: banner
+        mode: '0644'
+      when: ansible_nodename == "stapp03.stratos.xfusioncorp.com"
