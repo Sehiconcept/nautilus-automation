@@ -4,7 +4,7 @@ This directory contains Terraform configurations for cloud infrastructure automa
 
 ## Files
 
-- `main.tf` — VPC creation for datacenter migration
+- `main.tf` — Security Group creation for app servers
 
 ## How to Use
 

@@ -2,7 +2,7 @@
 
 Automated deployment and configuration of application servers in Stratos DC using Ansible.
 
-This repository documents a series of infrastructure automation tasks completed to standardize server setup, package installation, service management, and fine-grained file permissions — all without manual intervention. | 2025-11-15 | Deployed web server with branded content using `lineinfile` | Deployed files conditionally using `ansible_nodename` conditionals | 2025-11-15 | Created VPC using Terraform for cloud migration strategy |
+This repository documents a series of infrastructure automation tasks completed to standardize server setup, package installation, service management, and fine-grained file permissions — all without manual intervention. | 2025-11-15 | Deployed web server with branded content using `lineinfile` | Deployed files conditionally using `ansible_nodename` conditionals | 2025-11-15 | Created VPC using Terraform for cloud migration strategy | 2025-11-15 | Created security group using Terraform for cloud migration |
 
 > **Goal**: Ensure consistency, security, and scalability across all app servers using infrastructure-as-code principles.
 
@@ -21,6 +21,7 @@ This repository documents a series of infrastructure automation tasks completed 
 | ✅ Deploy web server + branded content | `ansible/playbook.yml` | Installed `httpd`, created `index.html` with branded welcome message at top using `lineinfile` |
 | ✅ Conditional file deployment | `ansible/playbook.yml` | Used `when` conditionals with `ansible_nodename` to copy different files to different servers with unique ownership |
 | ✅ Terraform VPC creation | `terraform/main.tf` | Created `datacenter-vpc` in `us-east-1` using Infrastructure as Code |
+| ✅ Terraform Security Group | `terraform/main.tf` | Created `xfusion-sg` with HTTP/SSH rules using Infrastructure as Code |
 ---
 
 ## 🛠️ How to Use (For Team Members)
