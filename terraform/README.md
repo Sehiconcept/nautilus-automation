@@ -4,7 +4,7 @@ This directory contains Terraform configurations for cloud infrastructure automa
 
 ## Files
 
-- `main.tf` — Security Group creation for app servers
+- `main.tf` — EC2 instance creation with auto-generated key pair
 
 ## How to Use
 

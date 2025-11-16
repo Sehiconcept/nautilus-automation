@@ -13,35 +13,31 @@ provider "aws" {
   region = "us-east-1"
 }
 
-# Create Security Group
-resource "aws_security_group" "xfusion_sg" {
-  name        = "xfusion-sg"
-  description = "Security group for Nautilus App Servers"
+# Create RSA key pair
+resource "tls_private_key" "devops_key" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
 
-  ingress {
-    description = "HTTP"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+# Save private key to file
+resource "local_file" "private_key" {
+  content  = tls_private_key.devops_key.private_key_pem
+  filename = "devops-kp.pem"
+}
 
-  ingress {
-    description = "SSH"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+# Create key pair in AWS
+resource "aws_key_pair" "devops_key_pair" {
+  key_name   = "devops-kp"
+  public_key = tls_private_key.devops_key.public_key_openssh
+}
 
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+# Create EC2 instance
+resource "aws_instance" "devops_ec2" {
+  ami           = "ami-0c101f26f147fa7fd"
+  instance_type = "t2.micro"
+  key_name      = aws_key_pair.devops_key_pair.key_name
 
   tags = {
-    Name = "xfusion-sg"
+    Name = "devops-ec2"
   }
 }
